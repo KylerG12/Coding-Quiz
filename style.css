@@ -59,3 +59,27 @@ button{
     font-size: 30px;
     font-weight: bolder;
 }
+
+.hidden{
+    display: none;
+}
+
+#quiz h1{
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+    flex-wrap: wrap;
+    width: fit-content;
+    margin: auto;
+}
+
+#quiz ul{
+    display: flex;
+    justify-content: center;
+    font-size: 35px;
+    flex-wrap: wrap;
+    width: fit-content;
+    margin: auto;
+    border-radius: 10px;
+    padding: 5px;
+}
