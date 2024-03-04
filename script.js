@@ -7,6 +7,7 @@ var titleRem = document.getElementById("Title");
 var quizQ = document.getElementById("quiz");
 var questionPrompt = document.getElementById("question-prompt");
 var choices = document.getElementById("choices");
+var index  = 0;
 var questions = [
   {
     question: "Which of the following is NOT a primitive value?",
@@ -51,12 +52,12 @@ function Countdown() {
 function quizStart() {
   titleRem.setAttribute("class", "hidden");
   quizQ.removeAttribute("class", "hidden");
-  questionPrompt.textContent = questions[0].question;
+  questionPrompt.textContent = questions[index].question;
 
-  for(var i = 0; i < questions[0].options.length; i++){
+  for(var i = 0; i < questions[index].options.length; i++){
   var cycle = document.createElement("button");
   var li = document.createElement("li");
-  cycle.textContent = questions[0].options[i];
+  cycle.textContent = questions[index].options[i];
   li.appendChild(cycle);
   choices.append(li);
   
@@ -72,12 +73,32 @@ function questionA(event){
         return;
     }
 
-    if (pressed !==  questions[0].correct){
+    if (pressed.textContent !==  questions[index].correct){
         currentTime -= 10;
         timer.textContent = currentTime;
+    } else{
+        index++;
+    
+    if(index <= 3){
+        questionPrompt.innerHTML  = "";
+        choices.innerHTML = "";
+        quizStart();
+    } else{
+        endGame();
+    }
     }
 
-    console.log(pressed);
+}
+
+function endGame(){
+    prompt("Please enter your name");
+    quizQ.setAttribute("class", "hidden");
+    titleRem.removeAttribute("class", "hidden");
+    titleRem.setAttribute("class", "Title")
+    index = 0;
+    questionPrompt.innerHTML  = "";
+    choices.innerHTML = "";
+    currentTime = 60;
 }
 
 //Logic
