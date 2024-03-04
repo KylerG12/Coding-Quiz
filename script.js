@@ -110,6 +110,7 @@ function endGame() {
 function saving() {
   var arrayS = JSON.stringify(saved);
   localStorage.setItem("scores", arrayS);
+  console.log(saved.length);
 }
 
 function loading() {
@@ -129,6 +130,6 @@ startBtn.onclick = quizStart;
 
 choices.onclick = questionA;
 
-if (saved.length != 0){
+if (localStorage.getItem("scores")){
     loading();
 }
