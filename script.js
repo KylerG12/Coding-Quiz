@@ -129,4 +129,6 @@ startBtn.onclick = quizStart;
 
 choices.onclick = questionA;
 
-loading();
+if (saved.length != 0){
+    loading();
+}
