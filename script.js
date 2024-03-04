@@ -113,18 +113,16 @@ function saving() {
 }
 
 function loading() {
-//   if (reload !== "") {
-    var load = localStorage.getItem("scores");
-    var reload = JSON.parse(load);
+  var load = localStorage.getItem("scores");
+  var reload = JSON.parse(load);
 
-    for (var i = 0; i < reload.length; i++) {
-      var loaditems = document.createElement("li");
-      var pre = reload[i];
-      loaditems.append(pre);
-      scores.append(loaditems);
-    }
+  for (var i = 0; i < reload.length; i++) {
+    var loaditems = document.createElement("li");
+    var pre = reload[i];
+    loaditems.append(pre);
+    scores.append(loaditems);
   }
-// }
+}
 
 //Additional Logic
 startBtn.onclick = quizStart;
@@ -132,7 +130,3 @@ startBtn.onclick = quizStart;
 choices.onclick = questionA;
 
 loading();
-
-
-
-

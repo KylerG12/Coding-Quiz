@@ -1,91 +1,85 @@
-
-
 .Clock {
   display: flex;
   font-size: 40px;
   justify-content: right;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
-header{
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+header {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
-.Title h1{
+.Title h1 {
   display: flex;
   justify-content: center;
   font-size: 50px;
   color: cornflowerblue;
   width: fit-content;
-    margin: auto;
-    background-color: burlywood
-
+  margin: auto;
+  background-color: burlywood;
 }
 
-.Title p{
-    display: flex;
-    justify-content: center;
-    font-size: 35px;
-    flex-wrap: wrap;
-    width: fit-content;
-    margin: auto;
-    
+.Title p {
+  display: flex;
+  justify-content: center;
+  font-size: 35px;
+  flex-wrap: wrap;
+  width: fit-content;
+  margin: auto;
 }
 
-.Pre{
-    padding-bottom: 100px;
+.Pre {
+  padding-bottom: 100px;
 }
 
-button{
-    display: flex;
-    justify-content: center;
-    font-size: 35px;
-    flex-wrap: wrap;
-    width: fit-content;
-    margin: auto;
-    border-radius: 10px;
-    padding: 5px;
-   
+button {
+  display: flex;
+  justify-content: center;
+  font-size: 35px;
+  flex-wrap: wrap;
+  width: fit-content;
+  margin: auto;
+  border-radius: 10px;
+  padding: 5px;
 }
 
-#ScoresHead{
-    font-size: 50px;
-    color: black;
-    font-style: italic;
-    text-decoration: underline;
+#ScoresHead {
+  font-size: 50px;
+  color: black;
+  font-style: italic;
+  text-decoration: underline;
 }
 
-.Scores li{
-    font-size: 40px;
-    font-weight: bolder;
-    text-decoration:none;
-    color:#174075;
+.Scores li {
+  font-size: 40px;
+  font-weight: bolder;
+  text-decoration: none;
+  color: #174075;
 }
 
-.hidden{
-    display: none;
+.hidden {
+  display: none;
 }
 
-#quiz h1{
-    display: flex;
-    justify-content: center;
-    font-size: 50px;
-    flex-wrap: wrap;
-    width: fit-content;
-    margin: auto;
+#quiz h1 {
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  flex-wrap: wrap;
+  width: fit-content;
+  margin: auto;
 }
 
-#quiz ul{
-    justify-content: center;
-    font-size: 35px;
-    flex-wrap: wrap;
-    width: fit-content;
-    margin: auto;
-    border-radius: 10px;
-    padding: 5px;
-    
+#quiz ul {
+  justify-content: center;
+  font-size: 35px;
+  flex-wrap: wrap;
+  width: fit-content;
+  margin: auto;
+  border-radius: 10px;
+  padding: 5px;
 }
 
-#quiz li{
-    padding: 10px;
+#quiz li {
+  padding: 10px;
 }
