@@ -36,15 +36,6 @@ var questions = [
 
 //Function Logic
 
-// function initCheck() {
-//   let score = document.getElementById("ScoresHead");
-//   let li = document.createElement("li");
-//   li.textContent = "No Highscores yet";
-//   if (score.children.length < 1) {
-//     score.appendChild(li);
-//   }
-// }
-
 function Countdown() {
   if (currentTime > 0) {
     currentTime--;
@@ -85,9 +76,6 @@ function questionA(event) {
   if (pressed.textContent !== questions[index].correct) {
     currentTime -= 10;
     timer.textContent = currentTime;
-    // if (currentTime < 0){
-    //     endGame()
-    // }
   } else {
     index++;
 
@@ -102,12 +90,12 @@ function questionA(event) {
 }
 
 function endGame() {
-  var highscore = document.createElement("li")
+  var highscore = document.createElement("li");
   var name = prompt("Please enter your name");
-  var input = name.concat(':   ').concat(currentTime);
+  var input = name.concat(":   ").concat(currentTime);
   highscore.append(input);
   scores.append(highscore);
-  saved.unshift(input);
+  saved.push(input);
   quizQ.setAttribute("class", "hidden");
   titleRem.setAttribute("class", "Title");
   index = 0;
@@ -119,37 +107,32 @@ function endGame() {
   saving();
 }
 
-function saving() { 
-    var arrayS = JSON.stringify(saved);
-    localStorage.setItem("scores", arrayS)
-    
-    // localStorage.setItem("scores", JSON.stringify(saved));
+function saving() {
+  var arrayS = JSON.stringify(saved);
+  localStorage.setItem("scores", arrayS);
 }
 
-function loading(){
-    var load = localStorage.getItem("scores")
+function loading() {
+//   if (reload !== "") {
+    var load = localStorage.getItem("scores");
     var reload = JSON.parse(load);
-    if(reload !== ""){
-    for (var i = 0; i < reload.length; i++){
-    var loaditems = document.createElement("li");
-    var pre = reload[i];
-    loaditems.append(pre)    
-    scores.append(loaditems);
+
+    for (var i = 0; i < reload.length; i++) {
+      var loaditems = document.createElement("li");
+      var pre = reload[i];
+      loaditems.append(pre);
+      scores.append(loaditems);
     }
-}
-}
-
-// var saved = scores.value;
-// var load = JSON.parse(window.localStorage.getItem("scores")) || [];
-// load.push(saved);
-// window.localStorage.setItem("scores", JSON.stringify(load));
-
+  }
+// }
 
 //Additional Logic
-// initCheck();
-
-loading();
-
 startBtn.onclick = quizStart;
 
 choices.onclick = questionA;
+
+loading();
+
+
+
+
