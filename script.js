@@ -130,11 +130,9 @@ function loading(){
     var load = localStorage.getItem("scores")
     var reload = JSON.parse(load);
     if(reload !== ""){
-    var loaditems = document.createElement("li");
-    console.log(reload);
     for (var i = 0; i < reload.length; i++){
+    var loaditems = document.createElement("li");
     var pre = reload[i];
-    console.log(pre);
     loaditems.append(pre)    
     scores.append(loaditems);
     }
