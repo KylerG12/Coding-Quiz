@@ -7,7 +7,10 @@ var titleRem = document.getElementById("Title");
 var quizQ = document.getElementById("quiz");
 var questionPrompt = document.getElementById("question-prompt");
 var choices = document.getElementById("choices");
-var index  = 0;
+var scores = document.getElementById("ScoresHead");
+var index = 0;
+var timerDown;
+var saved = [];
 var questions = [
   {
     question: "Which of the following is NOT a primitive value?",
@@ -33,80 +36,122 @@ var questions = [
 
 //Function Logic
 
-function initCheck() {
-  let score = document.getElementById("ScoresHead");
-  let li = document.createElement("li");
-  li.textContent = "No Highscores yet";
-  if (score.children.length < 1) {
-    score.appendChild(li);
-  }
-}
+// function initCheck() {
+//   let score = document.getElementById("ScoresHead");
+//   let li = document.createElement("li");
+//   li.textContent = "No Highscores yet";
+//   if (score.children.length < 1) {
+//     score.appendChild(li);
+//   }
+// }
 
 function Countdown() {
-  if (currentTime > 55) {
+  if (currentTime > 0) {
     currentTime--;
     timer.textContent = currentTime;
+  }
+  if (currentTime <= 0) {
+    currentTime = 0;
+    endGame();
   }
 }
 
 function quizStart() {
   titleRem.setAttribute("class", "hidden");
   quizQ.removeAttribute("class", "hidden");
+  nextQ();
+  timerDown = setInterval(Countdown, 1000);
+  Countdown();
+}
+function nextQ() {
   questionPrompt.textContent = questions[index].question;
 
-  for(var i = 0; i < questions[index].options.length; i++){
-  var cycle = document.createElement("button");
-  var li = document.createElement("li");
-  cycle.textContent = questions[index].options[i];
-  li.appendChild(cycle);
-  choices.append(li);
-  
-
+  for (var i = 0; i < questions[index].options.length; i++) {
+    var cycle = document.createElement("button");
+    var li = document.createElement("li");
+    cycle.textContent = questions[index].options[i];
+    li.appendChild(cycle);
+    choices.append(li);
+  }
 }
 
+function questionA(event) {
+  var pressed = event.target;
+
+  if (!pressed.matches("button")) {
+    return;
+  }
+
+  if (pressed.textContent !== questions[index].correct) {
+    currentTime -= 10;
+    timer.textContent = currentTime;
+    // if (currentTime < 0){
+    //     endGame()
+    // }
+  } else {
+    index++;
+
+    if (index <= 3) {
+      questionPrompt.innerHTML = "";
+      choices.innerHTML = "";
+      nextQ();
+    } else {
+      endGame();
+    }
+  }
 }
 
-function questionA(event){
-    var pressed = event.target;
+function endGame() {
+  var highscore = document.createElement("li")
+  var name = prompt("Please enter your name");
+  var input = name.concat(':   ').concat(currentTime);
+  highscore.append(input);
+  scores.append(highscore);
+  saved.unshift(input);
+  quizQ.setAttribute("class", "hidden");
+  titleRem.setAttribute("class", "Title");
+  index = 0;
+  questionPrompt.innerHTML = "";
+  choices.innerHTML = "";
+  clearInterval(timerDown);
+  currentTime = 60;
+  console.log(saved);
+  saving();
+}
+
+function saving() { 
+    var arrayS = JSON.stringify(saved);
+    localStorage.setItem("scores", arrayS)
     
-    if(!pressed.matches("button")){
-        return;
-    }
-
-    if (pressed.textContent !==  questions[index].correct){
-        currentTime -= 10;
-        timer.textContent = currentTime;
-    } else{
-        index++;
-    
-    if(index <= 3){
-        questionPrompt.innerHTML  = "";
-        choices.innerHTML = "";
-        quizStart();
-    } else{
-        endGame();
-    }
-    }
-
+    // localStorage.setItem("scores", JSON.stringify(saved));
 }
 
-function endGame(){
-    prompt("Please enter your name");
-    quizQ.setAttribute("class", "hidden");
-    titleRem.removeAttribute("class", "hidden");
-    titleRem.setAttribute("class", "Title")
-    index = 0;
-    questionPrompt.innerHTML  = "";
-    choices.innerHTML = "";
-    currentTime = 60;
+function loading(){
+    var load = localStorage.getItem("scores")
+    var reload = JSON.parse(load);
+    if(reload !== ""){
+    var loaditems = document.createElement("li");
+    console.log(reload);
+    for (var i = 0; i < reload.length; i++){
+    var pre = reload[i];
+    console.log(pre);
+    loaditems.append(pre)    
+    scores.append(loaditems);
+    }
+}
 }
 
-//Logic
-initCheck();
-Countdown();
+// var saved = scores.value;
+// var load = JSON.parse(window.localStorage.getItem("scores")) || [];
+// load.push(saved);
+// window.localStorage.setItem("scores", JSON.stringify(load));
+
+
+//Additional Logic
+// initCheck();
+
+loading();
 
 startBtn.onclick = quizStart;
 
 choices.onclick = questionA;
-
-timerDown = setInterval(Countdown, 1000);

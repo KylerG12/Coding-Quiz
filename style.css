@@ -48,7 +48,7 @@ button{
    
 }
 
-.Scores ul{
+#ScoresHead{
     font-size: 50px;
     color: black;
     font-style: italic;
@@ -56,8 +56,10 @@ button{
 }
 
 .Scores li{
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bolder;
+    text-decoration:none;
+    color:#174075;
 }
 
 .hidden{
